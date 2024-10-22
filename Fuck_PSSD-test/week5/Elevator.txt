@@ -1,0 +1,69 @@
+Elevator Limit
+
+Initial thoughts: 
+
+The problem is about analyzing the given data to predict the maximum and minimum 
+numbers of people that could be in the elevator before the simulation starts.
+The given data is 2 vectors of data, 'enter' and 'exit' where the elements 
+corresponds to the number of people who entered and exited the elevator at a particular 
+stop respectively. The elevator limit is given by 'physicalLimit' which is the 
+maximum number of people could be in the elevator simultaneously. The problem also 
+states that people exit the elevator first then enter.
+
+I can first initialise the minimum variable to have the Maximum value of an integer
+and maximum to have the Minimum value of an interger. I will also initialise a variable for
+the elevator current capacity and a vector which will contain the result of
+the minimum and maximum people in the elevator before the simulation starts.
+
+I could use a for loop which iterates through the 2 given vectors and inside 
+the loop there will be a if statement which checks if the current capacity or 
+the element in the exit or enter vector is greater than the physicalLimit which  
+ returns the empty vector if greater. Otherwise, the current capacity will subtract the number 
+of people who exit the elevator at the current stop. Then i will calculate the 
+min value between 'minimum' and 'current capacity'. Then the current capacity will be
+added with the number of people who enter the elevator at the current stop. Then, I will
+calculate the max value between 'maximum' and 'current capacity'
+.
+Afterwards, theres an if statement to check whether the minimum and 
+maximum value is NOT equal to the Maximum or Minimum value of an interger.
+If that statement is true, then I have to get the absolute value of minimum so thats it is not a
+negative number and the maximum is calculated again as the difference between 
+physicalLimit and max to represent the maximum number of people in the elevator
+before the simulation. '
+
+Then the code will perform another if else statement that checks if the
+the maximum value is less than the minimum value.
+If that statement is true then it will return the empty vector as well.
+Else if the max is less than or equal to the physical limit and the 
+difference between the maximum and minimum values is witihin the physicalLimit, 
+then only the mininmum and maximum value will get added into the 
+vector that was empty. Lastly the vector is then returned.
+
+Troubleshooting:
+Fail Test Case: 
+Testing with input: 35 125 84 47 176 71 141 46 12 174 126 14 4 58 179 161 173 148 157 175 30 53 98 99 3 100 95 174 189 23 106 101 135 70 97 156 54 156 
+Testing with input: 199 189 136 29 8 190 108 111 46 161 174 188 49 195 66 177 147 196 30 76 178 99 104 160 114 86 63 92 66 110 82 192 104 62 71 52 76 181 
+Testing with input: 785
+Output expected: {}
+Output recieved: {827, 879} 
+
+Testing with input: 295 752 84 439 607 581 
+Testing with input: 558 664 644 2 564 451 
+Testing with input: 948
+Output expected: {927, 948} 
+Output recieved: {}
+
+Based on the error, I would need to change the if statement at the end of the code. 
+I realised I have miss some base cases which I fixed by adding an if statement 
+where if the maximum value is more than the physicalLimit, then the maximum value is 
+updated to the physical limit. I've also added into the original if statement in the 
+code that checks if the minimum value is more than physicalLimit then it will also 
+return the empty vector.
+
+Reflection: 
+
+I learnt that I need to carefully analyse the problem to be able to realise all the constraints and edge cases, 
+as I have missad few which in turn led to many trouble shooting and fail casese
+ I learned that I should throughly test my code to cover various constraints
+and scenarios. 
+

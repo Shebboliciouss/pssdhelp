@@ -1,0 +1,26 @@
+Initial thought: 
+The problem was quite straight forward . I needed to identify occurences
+of 'A' and 'Z' in the string and reverse their order which will then form a 
+decrypted spell. I could tackle this problem by using a for loop to find the 
+the letters of 'A' and 'Z' and append those letter accordingly into another 
+string variable. Then, I could use another for loop that iterates through each 
+character of the string again and replace the characters which are 'A' and 'Z'
+based on the reverse order of the previous string variable found. 
+
+Reflection : 
+The problem was quite simple and straightforward to understand. It refreshes
+my memory on string manipulation and it drives me to think the importance of 
+simplicity in my algorithm so that there's less prone to errors.
+
+
+Overall Reflection:
+
+Throughout these problems, I have once again practiced my problem mapping skills and 
+segregating a problem into step by step increments which lead to easier understanding of
+the problem itself. Moreover, I have also practised implementing more recursive functions
+in to solving these conplex problems. These in turn would deem useful in future as it 
+would I'd have more ways to approach different problems. One thing I would need to 
+improve on is better optimisation of code as well as implementing more than on solution to my
+code in order to practise more aspects of my skillset which in this case dynamic programming.
+
+

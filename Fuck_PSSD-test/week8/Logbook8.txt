@@ -1,0 +1,186 @@
+Problem #1 CorporationSalary 
+
+Initial thoughts: 
+
+This problem is about finding the total salaries for all the employees.
+Each employee salary is calculated by the total sum of salaries of direct
+subordinates. The relations is represented by a matrix, where 'Y' indicates 
+employee[row] is a manager of employee[column] and if theres no subordinates,
+where the whole row is 'N' then salary is 1.
+
+I could solve this problem by initialising a variable which will calculates the 
+total salary of all employee to 0 and a vector which will contain all employees' 
+salaries and initialise all to -1. I could use a for loop that iterate through 
+the total number of employees (row) which will adds each of their salaries into 
+the variable by calling the recursive function to calculate the salary.
+
+The recursive function will take in the index (row number/employee number) to 
+know which particular employees salary its calculating. The function will also 
+take in the address of the vector which stores each employees salary in order to 
+update the element after calculating finish that particular employees salary.
+
+I can utilise a for loop which will iterate through each employee (column), and 
+if it encounters a 'Y', it will get the salary of the current employee by 
+recursively calls the function to get the salary of their subordinates and sum up
+all their subordinates salary. Then, utilising a if statement which checks whether 
+the calculated total salary of that particular employee is zero then return and update 
+the salary vector to 1 , otherwise update their salary in the vector to the calculated 
+value and the calculated value. Moreoever, the base case for this recursive function
+is that it checks whether if the salary for that certain employee has already computed 
+then it will return the value stored in te salary vector to avoid redundant calculations.
+
+Reflection: 
+
+I carefully read the problem and even drew out the test cases to be able better visualise
+and understand what the problem wants. Furthermore, the use of memoization prevents 
+redundant calculations and the recursive function simplifies the logic of the code which
+improve code readability. I've also learn that it would be easier to figuring out the recursive
+part of the problem by working towards the expected returns from the given test cases manually.
+This way I could easily see how the code is suppose to work and which part is repeating.
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------
+we can use a '? : ' (Conditional Operator)
+which operates the same way as a if else statement which checks if the espression before 
+'?' is true then it will perform the espression before the ':' and of false it'll perform
+the espression thats after the ':'.
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem #2 FriendlySequences
+
+Initial thoughts:
+
+This problem involves getting the number of friendly contiguous subsequences within the given vector 
+of numbers. For 2 numbers to be friendly, they both have to contains the same digits, ignoring the 
+order and repetitions. For a friendly subsequence, it have to contain at 2 numbers in it and all 
+possible pairs of numbers must be friendly towards each other. To be a contiguous subsequence, the 
+subsequence must contains consecutive elements from the given vector. Moreover, 2 contiguous 
+subsequences are different when their start or end indeces are different.
+
+I could approach this problem by using a nested loop that iterate all the elements in the vector and 
+the inner loop will iterate through the rest of the elements in the vector and compare the 2 numbers
+whether its friendly using the friendly function. If the friendly function returns false then break 
+inner loop as the pair is not friendly and so that the subsequence is contiguous. If the function is 
+true, then increment the counter as it would mean the pair is friendly. Lastly, it would return the 
+total number of friendly subsequences.
+
+The friendly function is a helper function that checks whether the 2 numbers are friendly. I would need 
+to change the numbers into string to compare them. I would need to check whether the first number digits
+are present in the second number. Otherwise, it would return false.
+
+Troubleshooting: 
+
+Test case: 8 918389 
+Expected return: 0
+Code return: 1
+
+To fix this problem, I would need to check both numbers whether they both contains the same digits as 
+each other in the friendly function. I miss one of the requirement was that all possible pairs of numbers
+within subsequence must be friendly which means I would also need to check whether the second number
+digits are also present in the first number.
+
+Reflection: 
+
+My initial friendly function does check correctly whether the numbers are friendly, however, I miss one of the 
+constraints of forming a friendly subsequence. I learn that I have to carefully check my code whether it meets 
+all the requirements mention in the problem and also always list down the constraints and check them off when 
+I've implemented them into the code.
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+I can approach this problem by firstly creating a separate function which eliminate all the duplicates 
+digits from each numbers from the given vector. How this works is that I would need to change the number
+into a string in order to use the unique function. Then, sort the string so that the numbers are in 
+ascending order. After that, I can only use the unique function together and erase function together 
+to delete the duplicate digits as the unique function does not delete the duplicate values but instead
+return a new end of the string where it points to the start of the duplicate values as the new end.
+The function would then return the string that has been altered.
+
+I could also make another function which recursively track the amount of pair neighbouring elements that
+can be form from the given vector. It will check whether the if the neighbouring elements are the same 
+which means they are friendly as they contains the same digits, then it would add one to the counter and
+recursively call the function to find the next pair of friendly neighbouring elements. The base case for 
+this recursion function is that it checks whether the index equal to the length of the given vector minus 
+one then it would return 0 as it reaches the end of the vector
+------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem #3 ImportantTasks 
+
+Initial thoughts: 
+
+This problem involves calculating the maximum number of tasks that can be executed on a 
+number of computers with the given complexity that each computer can handle and each tasks'
+complexity. 
+
+I could tackle this problem by sorting both tasks and computer in descending order based on 
+their complexities. Then initilise 2 counters which will iterate through task and computers 
+to 0 and initialise a variable that will calculate the number of tasks that has been executed.
+
+I could use a while loop that will loops if the 2 counters is less than its respective vector
+size. Inside the while loop, it will checks whether if the current task complexity is less 
+than or equal to the computer complexity capacity and if its true then all 3 variables which I 
+initialise at the start will increment by 1. Otherwise, increment the counter that iterate 
+through the task vector. Finally, return the results.
+
+Reflection: 
+
+This problem is relatively easy to understand and solve. I learn that my approach to solve this
+problem can be also called as a greedy algorithm. This is because I sorted the vectors in descending
+order and iterate through to the sorted tasks vector and assign each task to the first compatible
+computer which can handle the task's complexity.This greedy approach also improve code efficiency.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem #4 TimeTravellingCellar 
+
+Initial thoughts:
+
+This problem is about maximum profit when increasing the time in one wine cellar and decreasing the 
+time in another wine cellar. However, it cannot advance or turn back in time in the same wine cellar.
+We are given a vector that stores the profit number for each wine cellar and another vector which 
+stores the decay cost for each cellar. 
+
+I could solve this problem by using a nested loop where the outer loop iterate through the profit 
+vector and inner loop iterate through the decay cost vector. Inside the inner loop, I could use a 
+if statement that checks whether the indexes are not the same number as it would be the same wine 
+cellar. If that statement is true, then it would calculate the maximum between the past computed 
+profit and the new profit can be calculate by using the difference between the current profit and
+the current decay cost. Lastly, the code will return the maximum profit that has been calculated.
+
+Reflection: 
+
+The problem was straightforward and easy to understand. I solve this code by using brute force and
+it might not be the most optimal way to solve it as this code time complexity is O(n^2). I believe 
+there would be another way to reduce the code complexity. I would then need to learn to allocate 
+more time to this problem to be able to try different approaches to reduce the time complexity of 
+the code and efficiency of the code. I would need to be open to revising my approaches and correcting
+them to effectively solve complex problems.
+
+
+
+
+
+
+

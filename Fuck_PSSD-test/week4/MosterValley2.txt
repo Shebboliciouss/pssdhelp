@@ -1,0 +1,64 @@
+Problem #1 MosterValley2
+
+Initial thoughts (MonsterValley2) :
+
+This problem states a scenario where a person named Manao is traversing through
+a valley inhabited by monsters. Manao can choose whether to bribe or pass 
+a monster if his party is scarier than the monster he encounters.
+Therefore, Manao has to bribe some monsters to join his party, 
+and he has to figure out the smallest total cost to bribe the monster 
+to ensure that he can safely pass through the valley. 
+
+The scarinesss of each monster and the cost of bribing each monster are 
+given in as arrays. 
+
+The problem did mention that Manao always must bribe the first monster he 
+encounters as he has no party members so his party scariness is zero.
+
+I could tackle this problem by using recursion. 
+I can make a recursive function which calculates the minimum price of bribing
+all the monsters in order to pass the valley safely.
+In the Recursive function, 4 parameters will be taken in which are 
+the total scariness of Manao's party, the current monster index, the arrays given 
+for the scariness and the price to bribe each monster respectively.
+
+It will firstly calculate the size of the array of the scariness of each monster.
+Then the base case will stop the recursive function using a if else statement which checks 
+whether the index is equal or greater than the size of the array of the scariness each monster 
+thaat was calculated earlier, which means if the statement is true, then theres no more monsters 
+left to encounter and it will return 0 as theres no cost associated.
+
+If the else condition is triggered , it will calculate the potential cost of gold if the current monster is bribed and recursively calls
+the function for the next monsters price if the current monster is bribed.
+Utilising another if statement where if the total scariness of the party is more than the current
+monster scariness, then Manao can pass the monster without bribing it, which will recursively call the function
+without increasing its total party scariness and increasing the index (Manao will pass the current monster and move on 
+to the next monster). Then, it will calculate the minimum cost to pass through the valley between 2 values where
+Manao passed the monster without bribing and bribing the current monster.
+
+TROUBLESHOOTING: 
+An error came out when testing my code for this test case: 
+
+Test case: {1999999991, 1999999992, 1999999993, 1999999994, 1999999995, 1999999996, 1999999997, 1999999998, 1999999999, 2000000000}, 
+`	   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+Expected output: 2
+Output : 10
+
+I realised the error was that I should have stored the scariness of each monster into a long vector and store the 
+total scariness of Manao's party total scariness of into a long variable as well.
+This is because type int not large enough to hold the desired value as it can only store 32 bits
+whereas long int can store 64 bits.
+
+Reflection: 
+It took me quite a while to figure out the solution using recursion to solve this 
+decision-making problem. I was required to draw out my thought process and 
+needed to consider future events, e,g if Manao bribes the monster or
+if he does not bribe it with his current scariness which would be greater than the monster he encounters
+and choosing the minimum cost between those 2 values. 
+
+I realised another way of solving this problem is dynamic programming which uses memoisation through a table
+which stores the cost to reach a monster(an index) with the total scariness of the his party.
+Between the 2 decisions; if the party has more scariness than current monster: 
+Bribe: total party scariness adding the current monster scariness and the value increase by the current monster's price, and moving on the next monster(increasing the index)
+Pass: Moves on to the next monster without changing the total party scariness
+Then, choose the minimum cost to reach through the valley.

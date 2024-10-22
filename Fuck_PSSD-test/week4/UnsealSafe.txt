@@ -1,0 +1,72 @@
+Initial thoughts (Unseal The Safe) :
+This problem involves finding the number of valid sequences of passwords based on the contraints which considers the adjacent digits on the keypad.
+
+I could solve this problem using dynamic programming and recursion which calculates the number of valid passwords for each length.
+
+I could start by first initialising a 2D dynamic array to store the possible combination of passwords. Then i will use a nested for loop to initiliase all the elements to zero. After that, I will use for loop to initialise the '1' row of the array elements to 1 as theres only one way to form a password of length 1 for any digit on the keypad.
+
+From here i could use a nested for loop where the outer loop (i iterates through the length of the password sequence starting from 2 as the base case of 1 is already initialised. The inner loop (j) will then be implemented to iterate through the keypad digits and it will call the recursive function to count the possible combinations for each digit (j) in length (i) before storing the results in the 2D array.
+
+I would then use another for loop to sum up all the counts of all possible combinations in length (N) to get the total number of combinations.
+
+The recursive function receives the current digit and the length of the password sequence as parameters. I could use a switch statement which defines a vector that contains the neighbouring digits for the given current digit which is based on the rules for each digit on the keypad.
+
+Then, I could use an if else statement that checks if the length of the password sequence is more than 2 which means there are more digits to consider after the current digit if the statement is true, then I have to decrease the length by 1 to consider the other password sequence. Then, i could use a for loop to iterate all the neighbouring digits stored in the previous vector and recursively call the function to calculate the possible combinations passwords for the vector elements' neighbouring digits. The results will the be accumulated into a variable and the variable is returned.
+
+If the length of the password sequence is equal to 2 the else condition is triggered and it will return the size of the vector that contains the neighbouring digits for the given current digit.
+
+
+
+
+
+
+
+
+
+
+Reflection: My previous code took too long to produce the results if
+the combination of the password is 15 or more. I learn that the code 
+took too long as it was recalculating values that was computed already. 
+
+To solve this problem, I coded up using memorization which utilises a map 
+which stores the computed values to avoid redundant calculations.
+
+My updated code includes keypad map in the countPasswords function
+which stores a vector of the neighbouring values for each keys on the keypad.
+
+A variable "total_comb_pass" is initialised to keep track of the total
+number of combinations of valid passwords.
+A map "data" which stores the computed results to avoid redundant calculations.
+It will take in a pair of integers as its keys 
+
+I used a for loop to iterate though the keypad digits which will calls the 
+helper function and each result of the call will be added to the "total_comb_pass" 
+variable.
+
+The recursive helper function calculates the number of valid passwords recursively and 
+it takes in 4 parameter which are (the length of the password sequence(i), the current digit(j), 
+reference to the keypad map, and reference to data map)
+
+Inside the helper function, theres an if statement which is triggered if the length of the password sequence (i) 
+is equal to 1 which means only 1 digit to be added to the password combination, then it will
+return 1 as theres only one possible password.
+
+I used  another if statement to find whether the result for the current combination 
+of i and j exists in the data map, it returns that result to avoid redundant calculations.
+Otherwise, it will calculate the number of valid passwords by iterating through 
+all the neighbouring digits of the current digit j using the keypad map and 
+it will recursively call the helper function with i-1 and the neighbouring digit of the current digit, 
+then it'll adds up the results for all possible neighbouring digits.
+After calculating the valid passwords for all digits, 
+the result is stored in the data map to avoid redundant calculations and the results are returned
+to the countPasswords function.
+
+From this approach, I learnt that including the keypad map inside the countPasswords function instead
+of putting it inside the recursive function is essential given that the keypad map is a static variable that cannot be changed.
+If I place it inside a recursive function, it would mean I'm re-initialising the map every time the function is called recursively 
+which causes inefficient and unnecessary memory overhead. To optimise performance of the code, putting the 
+keypad map in the outer function and passing it as a pararemeter to the other recursive function, ensures that the map 
+is created once. 
+I've also learn to pass by reference the maps to avoid performance overhead as the function receives 
+a reference to the original object(maps) instead of a copy of the entire map which creates new copies of these maps
+for each recursive calls.

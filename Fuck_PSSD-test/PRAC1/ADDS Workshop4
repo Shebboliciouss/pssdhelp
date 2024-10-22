@@ -1,0 +1,11 @@
+reverse a singly linked list, get the input, use stack and recursion stack iterate throught them and add element to the stack 
+and pop them and add them into another new link list
+
+Email would a linked list because its current time how recent the message is at the top both cases it would be a O(1) Array O(N) have to reallocate the memory as yuo cant predict size of the total email 
+array is one continuous big block memory, link list is small block of memory
+
+chat application is linked list we r not loading the whole history of chat only a small snippet but array loads everything but link list can 
+separate the memory 
+
+todo list is dynamic array normally ordered can index it and can acces the middle elements easily but it would be not efficient as you needto reallocate memory to add another task 
+Linked list--> 50 things you need to see the whole list rather than a small snippit about it 

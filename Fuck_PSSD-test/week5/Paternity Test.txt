@@ -1,0 +1,52 @@
+Paternity Test 
+
+Initial thoughts: 
+
+The problem is about comparing the DNA sample from the child, mother and the 
+several men's DNA to find the potential father of the child. The criteria is that
+half of the child's DNA must match the mother's DNA and the remaining half of 
+the child's DNA must match one of the the mens' DNA.Rhe indices of the mens 
+who meet that criteria are then returned.
+
+I could tackle this problem by firstly initialising a vector to store the indices
+of the possible fathers and a variable to keep track of the last chracter index.
+
+
+Next, I will use a nested for loop. The outer for loop(i) will iterate through
+the elements in the mens vector to get the string and then initialise a variable
+that stores the amount of same chracters in the child string and the mens string
+Then, there will be another for loop(j) that iterates through the child's 
+string length. inside the loop,  an if else statement is utilised that checks
+whether the child's character in the DNA matches with the 
+corresponsing chracter in the men's DNA and if that statement is true then the
+variable that storesthe amount of same chracters between child and men's DNA
+characters will be increased by 1. Else if the child's DNA character does not 
+match to the corresponding character in the mother's DNA then it will break the
+inner loop. Before the inner loop ends, the variable that tracks the last 
+chracter index will get updated to the corresponsing 'j' value, then only 
+loop(j) will end.
+
+ Afterwards, there will be a variable that stores the 
+the length of half of the child's DNA string. Before the loop(i) ends, there 
+will be an if statement that checks whether if the amount of same chracters 
+between child and men's DNA is more than or equal to the half of the child's DNA
+and if the variable that keeps track of last chracter index inreased by 1, is equal to
+the length of the child's DNA, that would mean that it has iterate through the end of child's DNA
+and the child's DNA matches with the mom and possible dad's DNA. 
+When both statements are true then the men's index will
+get added into the vector that I initialised at the beginning.
+
+After the nested for loop ended, the vector that stores
+the indices of the possible fathers is returned.
+
+Reflection:
+
+This problem was quite straightforward.The solution was quite apparent and I had good practice on problems
+involving strings. In turn I need more practice on numbers 
+that involves recursion and dynamic programming.
+
+Overall Reflection: 
+
+Overall, the Christmas Tree problem was the hardest for me to wrap around my head around as I did not realised
+ that it was a problem involving maths.This led me to realize that I need to practice more questions that implement more mathematical formulas
+so i do not get stuck again.

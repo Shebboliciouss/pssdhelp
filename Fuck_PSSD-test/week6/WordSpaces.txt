@@ -1,0 +1,63 @@
+Problem Statement for WordSpaces
+
+
+Problem Statement
+    	
+A spy, working as a reporter at a local newspaper, has been leaking information to enemy countries by hiding messages within the articles. However, he has been found out, and the local intelligence agency wants you to write a program to detect the occurrence of certain words within this newspaper. The difficulty is that the words are not written directly in the articles, but are spaced out by a constant number (possibly zero) of garbage characters. For example, by taking every other character (i.e. the constant number of garbage characters is 1) the word "hello" is encoded in the stream of letters: "haeilelao". Also, the word "the" is encoded in "at bah ate" by starting at the second character and reading every fourth character. Note the number of garbage characters used can be any non-negative integer.
+
+Create a class WordSpaces with a method which takes a String sentence and a String[] words. This method is to determine the first occurrence of each word in words within sentence. Elements of the int[] you return must correspond to words. That is, element i of the int[] corresponds to element i of words. If a word starts at character 0 of the sentence, then that element of the return int[] must be 0. Note that in the sentence: " at bah ate" (same as above, but with a leading space), the word "the" starts at position 2, whereas in the above example without the leading space, the word "the" starts as position 1.
+
+ 
+Definition
+    	
+Class:	WordSpaces
+Method:	find
+Parameters:	String, String[]
+Returns:	int[]
+Method signature:	int[] find(String sentence, String[] words)
+(be sure your method is public)
+    
+ 
+Notes
+-	In the event that a word does not occur in the sentence with any spacing, use the value -1 for that word.
+ 
+Constraints
+-	sentence will be between 1 and 50 characters in length, inclusive
+-	sentence will contain only lowercase letters (a-z) and spaces
+-	words will contain between 0 and 50 elements, inclusive
+-	each element of words will be between 1 and 50 characters in length, inclusive
+-	each element of words will contain only lowercase letters (a-z)
+ 
+Examples
+0)	
+    	
+"at bah ate"
+{"the","aa","hae"}
+Returns: { 1,  0,  5 }
+By taking the 2nd, 6th, and 10th characters (at positions 1, 5, and 9), we get "the". Thus, the first element of the return value is 1. (garbage spacing is 3) The word "aa" occurs at a number of locations:
+
+By taking characters at positions 0 and 4, we get "aa". (garbage spacing is 3) However, we also get "aa" by taking the letters at positions 4 and 7. (garbage spacing is 2)
+
+You are to return the position of the first occurrence, so the second element of the return value is 0.
+
+"hae" is found by taking letters at positions 5, 7, and 9, so the third element of the return value is 5. (garbage spacing is 1)
+1)	
+    	
+"test this one out"
+{"test","tst","hoe","not"}
+Returns: { 0,  0,  -1,  -1 }
+2)	
+    	
+"t ah mi as this"
+{"this","mat","zebra","hh"}
+Returns: { 0,  5,  -1,  3 }
+3)	
+    	
+"abcdefghijklmnoqrstuvwxyz zywvutsrponmlkjighfedcba"
+{"foy","foz","fox","ace","rom"}
+Returns: { 5,  -1,  -1,  0,  33 }
+4)	
+    	
+"ridikulus ridiculous"
+{"kuri","ks","cs","z","i","rsl"}
+Returns: { 4,  4,  14,  -1,  1,  0 }

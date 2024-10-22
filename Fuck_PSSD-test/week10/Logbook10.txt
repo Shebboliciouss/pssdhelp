@@ -1,0 +1,148 @@
+Problem #1 DifferentStrings
+
+Initial thoughts : 
+
+The problem is about calculating the minimum number of difference between the given 2 string, A and B.
+We are required to make the length of A to be equal to the length of B by adding characters to the 
+start or the end of string A. We have to make sure that we are minimizing the number of position where
+the letters differ from the 2 strings.
+
+I could tackle this problem by initialising the a variable that will store the minimal number of difference
+to the length of string B which is the worst case scenario where all letters are different from each poisitions.
+There would be a nested loop where the outer loop will iterate through 0 till the difference between string B 
+and string A. It is essentially iterates over all possible positions where string A can be placed in string B.
+There would be another variable that will calculate the difference between the letters at A and B at the current 
+position and I would initialise it to 0. Then, the inner loop will iterate over each letters in string A. In each 
+iteration, if the letters of A is different from the letter of B then it will increment the variable that I've 
+initialise inside the outer loop by 1. After the inner loop finishes, it will update the variable at the start of the 
+function that stores the minimum difference by getting the minimum number between the current difference the calculated
+difference. Once the nested for loop ends, then the function will return the minimum difference found between the 2 strings.
+
+Reflection : 
+
+I've separate the nested for loop into separate function for code readability. The code is presented in a brute force way.
+While this code able to handle small inputs based on the constraints, I believe there are room for further optimization. 
+I've broke down the problem in smaller parts by writing down the problem's requirements like length string A is always 
+smaller or equal to length string B, length string A must be equal to the length of string B and we can append characters 
+to the back or the start of string A to minimise the difference in position characters in string A and B. This can be
+easily done by placing string A in string B where string A is place in different index in string B. I was able to come 
+up with this solution with the help of writing out the test cases and solving it towards the expected output.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Problem #2 GoodHours
+
+Initial thoughts :
+
+This problem is about returning the number of GOOD times between the given start time and end time. A time is considered as 
+GOOD if its 4 digits can be split into 2 groups and the products of the digits within each group are equal. Each group must 
+have at least 1 digit in them so theres only 3 possible ways to split it which are {H, H:MM}, {HH, MM}, {HH:M, M}. 
+
+I could approach this problem by initialising a counter to keep track the amount of GOOD times and a static set to keep track 
+of the calculated GOOD times to avoid redundant calculations and boolean variable which will be an indicator to stop the loop.
+Next, I would use a while loop which will use the boolean variable before which an indicator when to stop the while loop. 
+Inside the while loop, I would initialise 4 variable which will store all 4 digits of the start time. Then, an if statement 
+which will check the time is inside the set and if it is, it will increase the counter. Otherwise, it will go into an if 
+statement which calculates whether the products between 2 groups of numbers splits are equal to each other in all 3 possible ways to 
+split the time into 2 groups. If the statement is true which means the times is GOOD then it will increase the counter and add the 
+time into the set. If it reaches the end time then set the indicator to false to stop the while loop. Then, it will increase the 
+start time by firstly increasing the second digit of the minutes by 1 then check if the digit reaches 10 then reset the second 
+digit of minute and increase the first digit of minutes. Afterwards, it will check if the first digit of the minute reaches 6 then 
+it would reset the first digit of the minutes and increase the second digit of the hours. For the hours it only can be 0 till 24 
+so it would check if the second digit of the hour reaches 10 AND if the first digit in hours is a 0 OR a 1 then it would reset the 
+second digit of hours and increase the first digit of hours. Another last if statement which check if the hours reach 24 where if 
+the first digit of hour reaches to 2 and the second digit of hours reaches 4 then only it will reset the hours numbers to 0.
+Before the next iteration, the start time will be updated to the increase time. So, when the iteration finishes it would return 
+the counter which is the total number of GOOD numbers in within the start and end time.
+
+Reflection: 
+
+I solve this problem in a brute force way. This problem could be further optimise if added another set which will store the time 
+which are not GOOD that way it would reduce redundant calculation. Overall, this problem was quite straight forwards and its a good 
+exercise as it mimics a real-life clock where we are required to mimic a clock in our code.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Problem #3 BlackAndWhiteSolitaire
+
+Initial thoughts :
+
+The problem is about finding the minimum number of cards that needed to be flip to get an alternating configuration of black and white cards.
+I could tackle this problem by iterating through the string and generate 2 other string with 2 configuration where one would be an alternating
+configuration which starts with black and the other one will start with white. Then, there would be 2 counters to count the number of different 
+characters between the given string and the 2 computed strings. I would need to use a for loop to iterate the characters of the string and compare 
+each character to the current character of the 2 computed strings. If the character does not match with the corresponding character in the first 
+computed string then it will increase the first counter by 1 and if it doesnt match the correspondingn character in the second computed string, then it 
+will increment the secodn counter by 1. Finally it will return the minimum between the 2 counters.
+
+Troubleshooting: 
+
+My initial approach does work, however I've realised that I do not need generate 2 configurated string and compare it with the original string and 
+calculated the difference of characters between the given string and he 2 configured string. I can reduce the code by eliminating the for loop that 
+generate the 2 strings. This way I would only use a for loop instead of 2 different for loops where in that  one for loop I would be iterating 
+through the given string. Then, in each iteration, I would check whether the character is 'W' which is white and its position 
+is EVEN then it would increase the first counter by 1 and if the character is 'B' which is BLACK and the position of it is ODD then it would 
+also increase the first counter by 1. The second counter would increment by 1 when the position is EVEN and the character is 'B' OR when the
+position is ODD and the character is 'W'. This way I would just need to iterate the given string only once and it would simplifies the code.
+
+Reflection : 
+
+I've tackle this problem with the greedy algorithm as this problem wants the smallest amount of flips. This problem also reinforced my understanding
+on string manipulation and iteration. While using the greedy algorithm, it made my code more efficient and readable because of the simplicity of the 
+code. I always need to consider that there are more efficient was to solve a problem and always try to get the most optimal solution. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Problem #4 ColorfulRabbits
+
+Initial thoughts : 
+
+This problem is about calculating the minimum number of rabbits in a town based on their replies. Each rabbit will reply the amount of other rabbits 
+in town that have the same colour as itself. 
+I could tackle this problem by iterating through the replies and count the number of times each unique reply is mention by the rabbits and put it into 
+a map where the reply would be store as a key and the times the rabbit mention the same reply as the value. Then, I would iterate through the unique
+replies in the map. Inside the for loop, I would calculate the minimum number of rabbits that could produce that reply and then adds the computed number
+into the total. To do so, I would need to calculate the amount of possible groups that can be formed. I would utilise an if statement that checks whether 
+the map's value(the number of times the reply is mention) is exactly divisible by the map's key(the reply of a rabbit + 1). This means that the rabbits 
+can be formed into complete groups without any extra rabbits, then number of possible groups formed will be the map's value divided by the map's key+1. 
+If its not exactly divisible means that there is a remainder, then increment the number of possible groups formed by one as there can be another group of 
+rabbits with the same colour can be formed with the extra rabbits. Then the number of possible groups formed multiply by the number of rabbits with the same 
+colour and this value will be added into the total. When the iteration finishes, it would return the total which is the minimum number of rabbits in a town 
+based on the replies. 
+
+Reflection : 
+
+This problem was quite easy to understand but there are some constraints that were not mention in the problem where not every rabbit in town will give a reply.
+This makes the problem more challenging as I was required to calculate the minimum number of rabbits in a town. It took me quite a while to come up with the
+mathematical calculation to calculate the minimum number of rabbits. I have to drew out what were the possible number of same colour rabbit groups able to form 
+if the rabbits replied all the same number and since I only need to consider the minimum number of rabbits then I can just assume that there would be a minimum 
+number of same colour rabbits formed. I learn that drawing out the rabbits in the town really help me visualise how to work out the solution. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Problem #5 Thimbles
+
+Initial thoughts:
+
+This problem is a simulation of a thimbles game where a ball is hidden under one of the thimbles after some swaps are made betweem the thimbles. The problem wants 
+us to return the final position of the ball after all the swaps and the initially the ball is under the first thimble. 
+I could solve this problem by initialising the ball position to be 1 first. Then, I would use a for loop that will iterate through the given vector of swaps and
+in each iteration, it would get the 2 positions to swap which are X and Y. I would need to convert the string positions into integer by -'0' based of the ASCII table.
+If the X position is equal to the ball position then it will update the ball's position to be Y and vise versa. In other words, if position Y is the same as the ball's 
+position then it would update the ball's position to be X instead. When the for loop finishes, then it would return the ball's final position. 
+
+Reflection: 
+
+The problem was easy to understand and quite straight forward. I have realised that if the X and Y position of the thimbles have no ball under it, then I would not need 
+to do any swaps as it would not affect the ball's final position. Therefore, in the code, I only need to swap the positions if any of the X and Y have a ball under it. 
+This simplifies the code and make it more efficient. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Overall Reflection : 
+
+In conclusion, I've learn so much about different algorithms and different ways to approach problems. Throughout these questions, there has been many instances
+where I have been stuck but after carefully reviewing how the question was structured and working in steps, I have dramatically improved in solving skills and 
+my mindset on approaching a problem.
+
+
+
+
+
+

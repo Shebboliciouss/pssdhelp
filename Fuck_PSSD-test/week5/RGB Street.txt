@@ -1,0 +1,43 @@
+RGB Street 
+
+Initial thoughts: 
+This problem involves finding the minimum cost to paint the row of houses in these
+3 colours: red, green and blue. Neighbouring houses mustn't have the same colour. 
+We are given the cost of each colour for each house. 
+
+Firstly, I would need to calculate the number of elements in the given vector input
+which will determine the number of houses needed to be painted. Then I would 
+initialise a 2D vector to store the cost value for each colour for each house.
+
+Afterwards, I need to change the string vector into an integer vector. I can do this by utilising 
+a for loop to iterate through the string vector. Then inside the loop initialise 
+a vector to store the rows of the 2D vector which will store the cost of each colour 
+for the that current house. Then, by creating a istringstream to read the cost of the 
+colours for the current house, i can utilise a while loop to read each interger
+value found in the istringstream and add each value into the row vector. 
+After the while loop, it will add the row vector into the 2D vector. When the 
+for loop finishes, i will use another for loop to iterate through the 2D array starting 
+from 1 since the first house can start from any colour so the second house will be iterated through first
+till the last house.
+
+Then, for each house starting from the second house, each colour of the current house
+will be added with the minimum cost of the other 2 colours from the previous house which is 
+different from the colour of the current house. 
+Example: If the row vector(each house) where the first element is red, then it will
+have the price of red for that current house plus the minimum cost between 
+green and blue from previous house. Same goes with green and blue which will be
+green plus the minimum cost of red and blue from previous house and 
+cost of blue plus the minimum cost between red and green from previous house.
+
+When that for loop ends, the 2D vector will have the minimum cost of painting 
+each house with each colour while ensuring that the neighbouring houses are
+painted in different colours.
+
+Lastly, I will return the minimum cost of the last row in the 2D vector.
+
+Reflection: 
+
+This was an easy problem to understand considering that the first and 
+last house are not neighbouring houses. I've also learn something new which is 
+istringstream which can stream the string into different variable of different
+data types. 

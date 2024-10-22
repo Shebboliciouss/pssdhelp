@@ -1,0 +1,56 @@
+Initial thoughts: 
+
+This problem requires finding the minimum additions needed to form an expression 
+from the given string of digits such that the expression results in the target sum.
+This problem could be solved by using recursion with backtracking which iterates 
+through the string and considers all possible ways to split the given string into 
+substrings and evaluate their sums by inserting the plus sign into split up 
+substrings.
+
+I could start by coding up a recursive function that generates all the possible combinations
+of inserting the plus signs into the given string of digits to calculate different sums.
+This recursive function takes in 5 parameters which are: the given string of digits,
+the starting index for the substrings, the cumulative sum calculated so far, 
+the count of the plus signs inserted so far and the target sum.
+
+Inside the function, I could use an if statement which checks the base case where if 
+the starting index of the substring is equal to the length of the original given
+string , it means that the function has considered all the possible substrings, if that
+statement is true, it will check if the cumulative sum is equal to the target sum and
+if thats true, then the cumulative sum with its plus count will be added into the 
+result vector.
+
+After that base case if statement, I could use a for loop that iterates through 
+all the possible substring lengths starting from the starting index and extract 
+the substring with the length of i. This for loop will convert that substring into a long integer.
+
+The function recursively call itself with a new starting index which is increasing 
+the previous starting index by 1 and a new cumulative sum is created by adding the previous 
+cumulative sum with the long integer and increasing the plus count by 1. 
+
+Then the results of the recursively called function is added into the result vector.
+Where the result vector contains all the possible sums and plus count associated 
+with the sums. 
+
+Then, the minSums function which initially called the recursive function will 
+iterate through the result vector and checks if the cumulative sum is equal to the 
+target sum, and if it is true then it will be stored in the answer variable and
+break the loop. Otherwise, if none of the cumulative sum in the results vector is 
+equal to the target sum then the answer variable is -1. 
+Lastly, I will use an if statement that checks if the answer variable is not -1 then 
+it will decrease the answer value by 1. The answer variable is then returned which contains
+the minimum plus sign added to get the target sum.
+
+
+Reflection: 
+
+I learn how to use the inbuilt stoul function which converts a string into a long interger. Theres also 
+many ways to approach this problem. This code could also be tackled by using 
+dynamic programming to avoid redundant calculations as the
+recursive approach iterates through the original substring many times to extract the 
+substring and this could lead to redundant calculations and cases inefficient for 
+large inputs. I am still practicing using recursion to solve problems as I am 
+not very comfortable using it. Therefore, I would need to practice a few more 
+problems utilising recursive to familiarise myself with recursion and implement
+dynamic programming along the way.
+ 

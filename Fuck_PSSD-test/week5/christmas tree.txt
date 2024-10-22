@@ -1,0 +1,100 @@
+Problem #1 Christmas Tree
+
+Initial Thoughts:  
+
+This problem involves decorating a Christmas tree with different colour baubles 
+which are as followed: red, green and blue. The Christmas tree has N amount of levels. 
+Each level must have an equal amount of baubles of each color. To solve this problem
+the number of distinct ways must be found to decorate the tree correctly based off the 
+given numbers of baubles for each colour.
+
+This is a combinatorial counting problem. I could tackle this problem by 
+creating a function which utlizes the binomial coefficient combination formula, nCr 
+,a formula of combination and arrangement where the object's order is irrelevant. 
+The function will calculate the number of ways to choose
+r objects from a set of n objects without considering the order. 
+In this function, there are 2 base cases. First, is when r is greater than n which means
+it is choosing more items than in the set which is invalid and will return 0.
+Another one occurs when r is equal to 0 or n then there will only be one way to choose which 
+is either none or all items and will return 1.
+
+If neither the base cases are met then the function will return a recursive 
+case where it will recursively call itself twice and add both results.
+It will return the nCr value by adding the number of possible combinations
+through including the current element and the number of possible combinations  
+by not including the current element.
+
+
+
+In this case, however, we have to make sure that each 
+level has equal numbers of baubles. Therefore, there will be another recursive 
+function which does that.
+
+
+The recursive function will first check if the baubles are more than zero otherwise
+if any of them are less then that it will return 0 as there are not enough baubles. 
+There's also another base case which occurs if the current level is the same with 
+max level then the valid way to arrange the baubles has already been calculated
+so it wll return 1. 
+
+I could then use an if statement which checks if the current level could be 
+divisible by 3 twhich would mean that the baubles could be equally distributed in that 
+level. If the statement is true, the current level will be divided to 3 which 
+will give the amount of baubles to take out in each of the 3 colours. 
+
+After that, I would initialise a variable which accumulates the total number of 
+valid ways to arrange the baubles accordingly.
+
+I will calculate the number of ways to arrange the baubles by calling the nCr function
+twice as I would to perform 2 combinations. The first combination would be to choose
+one colour first with the amount of baubles to take out. The second combination 
+is choosing the remaining colours with the same amount of baubles to take out.
+Then, I will need to multiply both combinations to get the total number of 
+valid combinations to distribute the baubles of different colours across that 
+current level.
+
+Then I will call the recursive function and update the values of the baubles by 
+minusing the number of baubles used to fill that level and increasing the current 
+level by 1 to move on to the next level. Afterwards, I will multiply the result by the
+value gotten from the nCr function and that will be added into the total valid combination 
+variable that I previously made.
+
+I would use an if function to check if the current level is divisible
+by 2. Then, by utilising the same approach as the above explanation, if it was true, i will then calculate
+the number of baubles to take out by dividing the current level by 2. I will then 
+call the nCr function to calculate the valid ways to arrange the baubles with an
+equal distribution of 2 colours. Then call the recursive function 3 times and each one
+will increase the current level by 1. The first call  
+considera an equal distribution of red and green baubles, so I will minus the number of 
+red and green baubles according to the amount needed to be taken out. The second call is red and 
+blue and the third is green and blue. All 3 calls will then get multipled by the nCr
+value and also added into the total valid combination variable. 
+
+Otherwise, if the current level must be filled all in one colour only. 
+I will then call the recursive function  again 3 times while increasing each current level
+by one. First will decrease the red baubles by the current Level number while 
+keeping the number of blue and green baubles unchanged. Then followed by green 
+then blue. And each of them will be added into the total valid combination variable.
+
+After all this,   total valid combinations variable which accumulates the results from all the 
+recursive calls will be returned.
+
+The original function 'decorationWays' would first calculate the total 
+baubles available and the total number of spaces needed for N levels.
+Then I would use those 2 calculations to test out the base case which is
+when the total baubles are less than the total spaces then it will return 0 as 
+there is not enough baubles to fill up all the spaces
+
+This will then call out the recursive function which accepts the number of 
+red, green and blue baubles and increase N by 1 because we are setting the 
+current level as 1.
+
+
+
+Reflection: 
+
+I broke down the question and tried visualising it by testing it with
+small numbers so that I could understand the concept of the question and its 
+base cases. I approached this problem using recursion but it could be improve
+by using memoization to store itermediate results which avoids redundant calculations.
+

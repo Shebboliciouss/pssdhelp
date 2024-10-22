@@ -1,0 +1,161 @@
+# Problem 1 PrefixFreeSets
+
+Initial thoughts: 
+
+This problem is about returning the maximum number of words in a subset that are prefix-free.
+This problem is about string manipulation which involves string comparisons and sorting.
+
+Firstly, I need to understand the meaning of a prefix as I am not quite sure what is a prefix.
+As I search the meaning of the a prefix, I understood that a prefix is a character or a group 
+of characters that is added to the beginning of a word.
+
+Therefore, I would need to check whether that certain word exist at the start of any of the other 
+words. So, I could arrange the vector in lexical order as the problem stated that a word could be
+a prefix of another word then that prefix word would be before the other word when its in a sorted
+vector. Then, I could utilise a for loop that will iterate through the words in the given vector.
+
+In each word starting at the second word, I would need to check whether the previous word could be 
+found at the start of the current word. I could do this using the find function in the string class 
+to check whether it returns 0 which means it returns the starting index. If the function doesn't 
+return a zero which means the previous word is not a prefix of the current word and therefore 
+increment the counter that counts the largest number of words in a subset that is prefix-free. 
+After the loop finishes, then it will return the counter number thats increment by 1 to include 
+the first word too.
+
+Reflection: 
+
+I didnt quite know what a prefix is when I was reading the problem and I took initiative 
+to search the meaning of a prefix to understand the problem to be able to solve it.
+At first I was thinking about approaching this problem using dynamic programming and recursion 
+where it could check each and every word whether its a prefix in another word in the vector
+like the first word is check whether its a prefix of the rest of the words then followed by 
+second word is check whether its a prefic of all the words after but not the first word as its
+been check already. However, doing this approach would be inefficient and I realise of I sorted
+the vector then it would be easier to check. I learn to search to clarify the understanding of 
+the problem and to come up with a more efficient solution to solve the problem.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Problem 2 FracCount
+
+Initial thoughts:
+
+The problem is about finding the position number of an irreduciable fraction with some rules. 
+The way to count the position is that the smaller denominator comes first before the bigger 
+denominator. If there's a irreduciable fraction with the same denominator, then the smaller 
+numerator comes first before the bigger numerator. Irreduciable fraction is that there are 
+no common factors other than 1 and it is coprime which means theres only one common factor.
+
+I could tackle this problem by initialising a counter for the position number of the irreduciable
+fraction and initilise a map that with store the position for every irreduciable fraction so far.
+Then, using a nested loop where the outer loop loops through the denominator from 2 till the given
+denominator and the inner loop loops through the possible numerator which is 1 till denominator-1.
+Then inside the inner function, there would be a if statement that calculates the greatest common 
+divisor(GCD) of the possible numerator and denominator. If the GCD function returns a 1 then it 
+would mean that the fraction is irreduciable. If that statement is true, I would first check 
+whether the that irreduciable fraction have been calculated before in the map and if it does then 
+it would return the computed number position and set the counter to be that number. Otherwise it would 
+increment the counter and store the newly calculated position into the map with its corresponding
+numerator and denominator. There would before another last if statement that checks whether if 
+the loops reach the given numerator and denominator, then it would return the counter.
+
+Reflection: 
+
+To clarify my understanding of the question, I've search up the properties of a fraction being irreduciable.
+By searching it up the properties of irreduciable fraction, I found out that I would need to use GCD to check
+if its a irreduciable fraction and I found out theres a built in function for gcd when I was looking up 
+in the algorithm class. Overall, this problem was easy to understand and it could be easily coded in 
+brute force but using brute force could lead to redundant calculations therefore, I've added a map where 
+it will store the calculated irreduciable fraction positions.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Problem 3 StrangeComputer
+
+Initial Thoughts:
+
+The problem involves a computer memory system where the memory is consits of binary bits which is 1s and 0s.
+Initially the memory is set to 0. The problem is about finding the minimum number of operations to set the 
+computer's memory to be the same as the given memory string. However in order to change the computer memory 
+from 0 to 1 or vise versa, this operation requires to choose a bit and a value whether its 1 or 0. Then, 
+all the bits from the selected bit till the end are set to desired value. 
+
+To tackle this problem, I could by initialising a counter that stores the number of operations and a char 
+variable to '0' as initially the memory is set to 0. Then, utilising a for loop that will iterate through 
+the string, one character at a time. Then, checking if the character is the same as the char variable that 
+was previously set. If the its not the same, I would then increase the counter by 1 and the char variable is 
+updated to the current character. After the loop, then it would return the counter.
+
+
+Troubleshooting:
+
+I have added the unique function to remove consecutive duplicate numbers improve the efficiency.
+Then resize the string to the length of unique characters as the unique function does not delete the duplicates
+or resize but instead it moves the duplicate values to the end and return a pointer to position after the unique 
+element which represents the new end of the string. I've also wanted to add a variable that stores the string as 
+an integer however, it would output out_of_range even when I assign it to unsigned long long, so I just scrape 
+that idea. Then, I realise I forgot to put the base as 2 as its in memory is in binary and an alias for the 
+data type size_t into stoull function parameter.
+Further inspection of my code, I realise the results and an alias for the data type size_t which stores the 
+number of character being converted has a pattern where the number of operations should be at least 
+less than the number of characters in the new string after resizing by 1 as the operation will be increment 
+by 1 every time a bit value changes. Furthermore, if the start of the string is 1 then one more operation is needed
+to change from the initial state which is 0 and the number of operation needs to increment by 1 when it the first 
+character is a 1.
+
+
+Reflection: 
+
+I've solve this problem using brute force. This code could be more efficient if I remove the consecutive duplicate 
+numbers as it would not change the number of operations and could be represented as a number instead. Therefore, I 
+use the unique function to remove the duplicate and resize the string so that the iteration could be shorter. 
+I learn to use the unique function and also make my code more comprehensible by identify the pattern of the result 
+which could corresponds to the variable in my code. 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Problem 4 ExerciseMachine 
+
+Initial thoughts: 
+
+This problem involves calculating the number of times a whole number percentage will displayed on the screen during a 
+workout session, given the total duration of workout in a format where its first 2 digits are represent number of hours, 
+2 digits after the colon would be the number of minutes and the last 2 digits are number of seconds. 
+The machine updates every second, and it can only display whole precentages.
+Therefore, seconds and precentage must whole number at the same time, then there will be a display.
+
+Firstly, I could separate the digits first to its respected variables which are hours, minutes, and seconds.
+Then, I can convert the hours and minutes into seconds and add all the numbers to get the total workout session in seconds.
+Since, the machine CANNOT display 0% and 100%, so the for loop will loop though from 1% till 99%. For each percent number, 
+it will perform a mathematical calculation which is (percent number/100) *  total seconds. If the calculation returns no 
+remainder, it means the percentage of the total workout time is equivalent to a whole number of seconds, therefore increase
+the counter which counts the number of times a percentage is display during the workout.
+Lastly, return the counter number.
+
+Reflection: 
+
+This problem was quite a bit hard to understood the instructions, so I wrote down calculations to see how the expected return
+was bring calculated using the test cases given. By doing so, I realise that the percentage and the seconds must be whole 
+numbers at the same time in order to have a diplay which clarifies my understanding towards the problem. I've also realise
+I could tackle this problem using recursion instead of using a for loop, so I made another function that does the recursion 
+part essentially the for loop part in recursion. I've learn to break down the problem into smaller parts and wrote down 
+possible ways to get the expected output with the given inputs in order for me to understand the question in depth.
+
+Overall Reflection: 
+
+I've learn about code simplicity and readability as there are many ways to solve a problem without make the code too complicated.
+I've also learn that brute force solutions are not always the most efficient way to solve a problem and I was able to get the chance 
+to search in written materials for example, I was able to discovered built in functions like gcd and unique function inside the 
+algorithm library through the cpp reference website as this would simplify my code and make it more efficient. Overall, 
+I would need to do more questions on dynamic programming and recursion as I am not so confident in those coding strategies yet 
+as I would take a much longer time to figure out a way to solve a problem using dynamic programming and recursion.
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,145 @@
+Problem #1 Barbeque 
+
+Initial thoughts : 
+
+This problem is involves each family member to vote for another member of the family to exclude.
+The person who got the most votes will be excluded. However, if the person who has the most votes
+is a tie then consider the person who cast their votes the most and if theres still a tie then 
+the person with the lowest index is chosen.
+
+I would first initialise 2 vectors to keep track of the number of votes each person casted and received.
+I could utilised a for loop to iterate through the 2 given vector and increment the corresponding elements
+in the 2 vectors that I've initialise at the beginning. Afterwards, initialising the person to exclude 
+to be the first family member which is 0 to be able to compare the number of votes received and casted.
+Then, using a for loop to iterate through all the family members to check if member[i] received more votes
+than the excluding member OR if member[i] received the same amount of votes as the excluding member but casted 
+more votes than the excluding member. If either statements are true, then the excluding member will be updated
+to be i. Finally, the code will returnt the index of the person who will be excluded.
+
+Reflection: 
+
+This problem was quite easy to understand and solve. I solve this problem using brute force and I 
+believe there are room for improvement for optimisation. There were a few edge cases where a person 
+cannot vote for itself and the tie breakers rules I've mention in the initial thoughts section. 
+I've also improve code readabillity as I assigned the varible names to be descriptive in order to 
+understand the logic of the code.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem #2 RunLengthEncoding
+
+Initial thoughts:
+
+This problem is about run-length encoding have compress the consecutive duplicate letters into a string.
+The string is represented by a count number followed by a letter. The problem required us to return the 
+decoded string and return "TOO LONG" if the string is more than 50 characters.
+
+I could solve this problem by iterating through the string and check each character of the string whether 
+its a digit or a letter. If it's a digit, I need to change character into a digit by -'0' then I would 
+need to keep track of the number as it might be more than one digit like 100 until the iteration reaches 
+to a letter. To do so, I would need to initialise a variable that will keep track of the number before the 
+letter at the beginning of the function. Afterwards, add the digit variable plus the variable times 10 to 
+change the number stored in the variable to its next place value. Then, I would need to check whether the 
+number calculated is more than 50 and if it is, it will return "TOO LONG". If it reaches to a letter, 
+I could use a for loop to iterate the number of times indicted by the number I've gotten before the letter 
+and each iteration will concatenate the letter to the decoded string. However, if theres no number before 
+the letter, I would just need to add the letter once to the decoded string. After adding the letters to the 
+string, I would need to rest the length to 0 to take in the next number for the next letter. Then , I would 
+check if the string length is more than 50 and if it is, it would return "TOO LONG".
+
+Once the loop ended, the code would return the decoded string that has the length of less than or equal to 50.
+
+Reflection :
+
+This problem refresh my memory on string manipulation so that I would not forget it. I also have read the question 
+carefully to be to distinguish the edge cases for this problem. For example, the decoded string cannot be more that 
+50 characters long and the number before a letter could be more than 1 digit. I've learn to list out all the edge 
+cases after reading the problem for easy implementation into the code.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Problem #3 SimpleDuplicateRemover
+
+Initial thoughts:
+
+This problem involves removing duplicate numbers from the vector and return a vector which contains the unique numbers.
+One of the edge cases is that the problem mention to leave only the rightmost occurence of that duplicated element.
+
+I could tackle this problem by initialise an empty vector which will later contain the rightmost element of the unique
+numbers. I would use a for loop to iterate the sequence vector given backwards from right to left in order to satisfy 
+the edge case and inside the loop it would keep track of the number elements that have been seen. To do so, I would 
+need to search the vector that I've initialise before to check whether the number is present in the vector and if it 
+isn't then add the number into the vector. Before returning the vector, I need to reverse the vector to maintain the 
+original order of unique elements then only can return the vector.
+
+Reflection :
+
+This problem was relatively easy to understand and iterating the elements in the sequence from right to left allows me 
+to easily retain only the rightmost occurence of the duplicated elements. I realised that the I could also use an 
+unordered set data struture to store the unique elements and keep track of the elements that have already been seen as
+it would not add the same number twice if it already have that number inside it. I learn that I would need to take some 
+time and considered different data structure to make the code simple and more readable.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Problem #4 ErdosNumber
+
+Initial thoughts:
+
+This problem is about calculating the Erdos number for each and every author mention in the publications vector given
+based on their coauthors number + 1. This problem could be tackle using an undirected graph where each node is an author 
+and each edges is their coauthors to represent the relationship between the author and their coauthors.
+
+I have decided to use a map and where the key is the authors name and the values is the a set that contains the author's 
+coauthors and by using a set it will make sure that no duplicates coauthors is being inserted. Also, a vector to store
+the erdos number for each author and a queue for the Breadth-First-Search(BFS) algorithm that will iterate the graph.
+
+I would utilised a for loop to iterate each publications and separate the each authors in the publications using istringstream
+and add each separated authors name into the graph and a vector that will store all the authors name in that current publication.
+I could use a nested loop inside the existing loop and both loop will iterates through the authors name vector. Inside the most
+inner loop, I will check whether the name[i] and name[j] is NOT SAME then it would be author name[j] is the coauthor for author name[i]
+then add the coauthor into set of the graph for author name[i]. This essentially is creating an edge between the pair author name[i]
+and author name[j].
+
+After the loops ended, I would need to add the author "ERDOS" into the vector with a value of 0 as its erdos number in a pair. 
+Also, add "ERDOS" into the queue to be able to perform the BFS for the graph. I would utilised a while loop that checks if the queue 
+is empty the it will break the while loop. Each iteration, I would need to store the element at the front of the queue into a varible 
+to be able to use it in later parts of the code as I need to pop the front element of the queue. Then, using a for loop that iterates 
+all the edges(coauthors) of the first element of the queue that I just remove and check whether if the coauthor has an erdos number. 
+If the coauthor doesn't have a number then they will be assign an erdos number by adding 1 to the current author's Erdos number(first element of the queue) 
+and add their name into the queue.
+
+After all the authors had been visited, I would need to sort the vector lexicographical order based on the authors name.
+
+Troubleshooting :
+
+It was a careless mistake to return a vector<pair> instead of a vector<string>. I've change the variable ErdosNum to be a map that stores
+a string(authors name) for the key and an int(Erdos number) for the value as it would make be easier to add the Erdos number for each unique
+authors. Then I would need to change the BFS part of the code to be able to use the map without changing the behaviour of the part of the code.
+
+I've also added another part of the code where it changes the map into a vector<string>. I've use a for loop to iterate through the graph
+and check whether if the map contains the authors name and if it does it means the author have an Erdos number then it push the author name followed by a 
+space followed by the author's Erdos number. The space is to separate the authors' name and their Erdos Number.
+If the author name is not present in the map then it would just add the author's name into the vector.Then later it would sort 
+the vector in lexicographical order, then only can return the vector.
+
+Reflection: 
+
+This problem was easy to understand however the solution to this problem was a new concept for me. I was able to understand how graph 
+works from online resources that I found on the Internet. For example: GeeksForGeeks which throughly explain behaviour of graph and 
+Youtube videos really help my understanding on graph as I was able to visualise how graph is form and to traverse through the graph 
+I would need to use Breadth First Search as it traverse from left to right traversing from one level of childrend nodes then to the 
+other level below it. I've learn about BFS algorithm and graph concept which was quite interesting. I've also learn to use the map 
+count funtion where it would return 1 if the element is present in the map's key and 0 if its not present. 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Overall reflection : 
+
+In conclusion, I would need to do more practices on graph concept problems in to be to fully understand it and ingrain it in my brain and carefully 
+check my code so that I would not make a careless mistake in the future. I would also need to practice more questions on dynamic programming.
+
+
+
+
+
+
+
